@@ -25,6 +25,25 @@
     /*
       misc styles, nothing to do with CSS variables
     */
+    :root {
+      --base: red;
+      --blur: 10px;
+      --spacing: 10px;
+    }
+
+    .hl {
+      color: var(--base);
+    }
+
+    img {
+      padding: var(--spacing);
+      background: var(--base);
+      filter: blur(var(--blur));
+    }
+
+   /* #base {
+      color: var(--base);
+    }*/
 
     body {
       text-align: center;
@@ -45,6 +64,23 @@
   </style>
 
   <script>
+  //select inputs
+  const inputs = document.querySelectorAll('input');
+
+  function updateHandle() {
+    //select suffix (px etc.)
+    const suffix = this.dataset.sizing || '';
+    //update property values based on selection
+    document.documentElement.style.setProperty(`--${this.name}`, this.value + suffix);
+  }
+
+  //eventListener for change in value of range and for mouse movements
+  inputs.forEach((input) => {
+    input.addEventListener('change', updateHandle);
+    input.addEventListener('mousemove', updateHandle);
+  })
+  //change properties based on values
+
   </script>
 
 </body>
